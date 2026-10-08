@@ -42,6 +42,12 @@ API routes aren't localized: `next start` serves `/api/blog/first` and not `/fr/
 - Static API routes work because they match `pathnames` exactly.
 - Two ways to fix it: drop the locale group from dynamic API routes in the adapter routing output, or have `@next/routing` match them without it.
 
+## When it started
+
+- Bisected with this reproduction (`next` and `@next/routing` at the same version): `16.3.0` and `16.3.1-canary.15` route `/api/blog/first`; `16.3.1-canary.16` and later, including `16.4.0` and `16.5.0-canary.4`, don't.
+- Between those two canaries, `2f84a1f28` "Revert i18n localization change for dynamic Pages API routes (#94905)" (vercel/next.js#97327, fixing vercel/next.js#96935) put the `nextLocale` group back into dynamic API routes' regex in `build-complete.ts`, to agree with Vercel's adapter, whose i18n rules prefix `/api/...` with the locale again (nextjs/adapter-vercel#101).
+- `@next/routing` wasn't changed to match: it still skips the locale for `/api/` paths, so with the reverted output no unprefixed dynamic API path matches. The fix likely belongs in `@next/routing` (prefix the locale for `/api/` paths, as Vercel's adapter does), keeping the output that Vercel relies on.
+
 ## Impact
 
 Every adapter that routes with `@next/routing` 404s dynamic API routes (`pages/api/.../[param].js`) in i18n apps. Seen in the deploy-mode tests `test/e2e/i18n-api-support` ("should respond to normal dynamic API request") and `test/e2e/i18n-basepath-fallback-false-404`.
