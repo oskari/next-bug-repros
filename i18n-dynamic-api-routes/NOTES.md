@@ -12,7 +12,7 @@ pnpm check    # resolves requests with @next/routing and that routing
 
 - `next.config.mjs`: `i18n: { locales: ['en', 'fr'], defaultLocale: 'en' }` and `adapterPath: ./adapter.mjs`.
 - `pages/api/hello.js` and `pages/api/blog/[slug].js`.
-- Verified with `next@16.5.0-canary.2` and `@next/routing@16.5.0-canary.2` on Linux (WSL 2), Node.js 24.14.1.
+- Verified with `next@16.5.0-canary.4` and `@next/routing@16.5.0-canary.4` on Linux (WSL 2), Node.js 24.14.1.
 
 ## Actual (`pnpm check`)
 

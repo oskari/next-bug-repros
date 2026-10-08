@@ -3,8 +3,8 @@
   "type": "module",
   "scripts": { "build": "next build", "check": "node check.mjs" },
   "dependencies": {
-    "@next/routing": "16.5.0-canary.2",
-    "next": "16.5.0-canary.2",
+    "@next/routing": "16.5.0-canary.4",
+    "next": "16.5.0-canary.4",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   }

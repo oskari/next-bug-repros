@@ -12,14 +12,14 @@ pnpm next build --webpack   # succeeds
 
 - `next.config.js` sets `cacheHandlers: { default: './cache-handler.js' }` (a no-op handler; any custom entry triggers it).
 - `app/api/edge/route.js` exports `runtime = 'edge'` and a `GET`.
-- Verified with `next@16.5.0-canary.2` on Linux (WSL 2), Node.js 24.14.1. The bug is still in `canary` (checked on GitHub, October 8, 2026).
+- Verified with `next@16.5.0-canary.4` on Linux (WSL 2), Node.js 24.14.1. The bug is still in `canary` (checked on GitHub, October 8, 2026).
 
 ## Actual
 
 ```
 > Build error occurred
 Error: Turbopack build failed with 1 error:
-./node_modules/.pnpm/next@16.5.0-canary.2_.../node_modules/next/dist/esm/build/templates/edge-app-route.js:22:12
+./node_modules/.pnpm/next@16.5.0-canary.4_.../node_modules/next/dist/esm/build/templates/edge-app-route.js:22:12
 Error: Expected ';', '}' or <eof>
 Parsing ecmascript source code failed
 ```
